@@ -8,3 +8,26 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+
+
+def input_number():
+    while True:
+        try:
+            return int(input("Enter number: "))
+        except ValueError:
+            continue
+
+
+def main():
+    count = input_number()
+    result = 0
+    operand = 1
+    while count != 0:
+        count -= 1
+        result += operand
+        operand /= -2
+    print(result)
+
+
+if __name__ == '__main__':
+    main()
