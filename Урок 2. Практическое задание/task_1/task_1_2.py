@@ -33,3 +33,49 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+import sys
+
+
+def input_operands():
+    num_a, num_b = None, None
+    try:
+        num_a = int(input("Enter first number: "))
+        num_b = int(input("Enter second number: "))
+    except ValueError:
+        print("Wrong number")
+        input_operands()
+    return num_a, num_b
+
+
+def insert_operator():
+    operator = input("Enter operator sign: ")
+    if operator == '0':
+        print("Calc was shutdown.")
+        sys.exit(0)
+    if operator in operators_list:
+        return operator
+    print("Wrong operator")
+    return insert_operator()
+
+
+def main():
+    num_a, num_b = input_operands()
+    operator_sign = insert_operator()
+    if operator_sign == '-':
+        return num_a - num_b
+    elif operator_sign == '+':
+        return num_a + num_b
+    elif operator_sign == '*':
+        return num_a * num_b
+    elif operator_sign == '/':
+        if num_b == 0:
+            return 'DivisionZeroError'
+        return num_a / num_b
+    else:
+        return 'Some kind of shit is happened'
+
+
+if __name__ == '__main__':
+    operators_list = ['-', '+', '*', '/']
+    while True:
+        print(main())

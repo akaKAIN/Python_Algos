@@ -32,3 +32,72 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+import sys
+
+
+class Calc:
+    __slots__ = ['num_a', 'num_b', 'operator_map']
+
+    def __init__(self):
+        self.num_a: int
+        self.num_b: int
+        self.operator_map = {
+            '0': self.stop,
+            '-': self.my_sub,
+            '+': self.my_add,
+            '*': self.my_mul,
+            '/': self.my_div
+        }
+
+    @staticmethod
+    def stop():
+        print("Calc was shutdown")
+        sys.exit(0)
+
+    def my_sub(self):
+        return self.num_a - self.num_b
+
+    def my_add(self):
+        return self.num_a + self.num_b
+
+    def my_mul(self):
+        return self.num_a * self.num_b
+
+    def my_div(self):
+        if self.num_b == 0:
+            return 'DivisionZeroError'
+        return self.num_a / self.num_b
+
+    def input_data(self):
+        result = True
+        num_a, num_b = None, None
+        try:
+            print('=====================================')
+            num_a = int(input("Enter first number: "))
+            num_b = int(input("Enter second number: "))
+            print('=====================================')
+        except ValueError:
+            result = False
+            print("Wrong number!")
+
+        if result:
+            self.num_a = num_a
+            self.num_b = num_b
+        return result
+
+    def input_operator(self):
+        operator = input("Enter operator sign (or 0 for exit): ")
+        if operator in self.operator_map.keys():
+            return self.operator_map[operator]
+        print("Unknown operator")
+        return self.input_operator()
+
+    def main(self):
+        while True:
+            if self.input_data():
+                print(self.input_operator()())
+
+
+if __name__ == '__main__':
+    Calc().main()
+
