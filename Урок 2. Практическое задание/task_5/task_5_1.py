@@ -20,7 +20,14 @@
 
 
 def main():
-    pass
+    total_count, count = 32, 0
+    while total_count <= 127:
+        print(f"{total_count} - {chr(total_count)} ", sep='', end='')
+        count += 1
+        total_count += 1
+        if count == 10:
+            print()
+            count = 0
 
 
 if __name__ == '__main__':
