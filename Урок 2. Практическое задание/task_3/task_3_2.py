@@ -14,3 +14,33 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+
+def input_number():
+    try:
+        num = int(input("Enter number: "))
+        return abs(num)
+    except ValueError:
+        print("Wrong number")
+        input_number()
+
+
+def print_reversed_num(num):
+    if num < 10:
+        print(num, end='', sep='')
+        return
+    dec = num % 10
+    num //= 10
+    print(dec, end='', sep='')
+    print_reversed_num(num)
+
+
+def main():
+    num = input_number()
+    print('Revers number is: ', end='', sep='')
+    print_reversed_num(num)
+
+
+if __name__ == '__main__':
+    main()
+

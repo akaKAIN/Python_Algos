@@ -12,3 +12,25 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+
+
+def input_number():
+    while True:
+        try:
+            num = int(input("Enter number: "))
+            return abs(num)
+        except ValueError:
+            print("Wrong number")
+
+
+def main():
+    num = input_number()
+    print('Revers number is: ', end='', sep='')
+    while num > 0:
+        dec = num % 10
+        num //= 10
+        print(dec, end='', sep='')
+
+
+if __name__ == '__main__':
+    main()
