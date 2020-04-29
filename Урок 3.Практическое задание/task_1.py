@@ -14,3 +14,28 @@
 В диапазоне 2-99: 12 чисел кратны 8
 В диапазоне 2-99: 11 чисел кратны 9
 """
+
+
+def create_dict():
+    d = {}
+    for i in range(2, 10):
+        d.setdefault(str(i), 0)
+    return d
+
+
+def print_result(d: dict):
+    for key, val in d.items():
+        print(f"В диапазоне 2-99: {val} чисел кратны {key}")
+
+
+def main():
+    result_dict = create_dict()
+    for i in range(2, 100):
+        for j in range(2, 10):
+            if i >= j and i % j == 0:
+                result_dict[str(j)] += 1
+    print_result(result_dict)
+
+
+if __name__ == '__main__':
+    main()
